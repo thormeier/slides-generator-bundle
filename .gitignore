@@ -1,0 +1,9 @@
+# Symfony directories
+vendor/*
+*/logs/*
+*/cache/*
+tests/Functional/app/cache
+tests/Functional/app/logs
+# Composer
+composer.phar
+composer.lock

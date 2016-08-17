@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+
+        <service id="thormeier_slides_generator.command.generate" class="Thormeier\SlidesGeneratorBundle\Command\SlidesGenerateCommand">
+            <tag name="console.command"/>
+        </service>
+
+        <service id="thormeier_slides_generator.utils.git" class="PHPGit\Git">
+            <argument>%kernel.root_dir%</argument>
+        </service>
+
+        <service id="thormeier_slides_generator.repository.git" class="Thormeier\SlidesGeneratorBundle\Repository\GitRepository">
+            <argument id="thormeier_slides_generator.utils.git" type="service"/>
+            <argument>%thormeier_slides_generator.identifier_pattern%</argument>
+            <argument>%thormeier_slides_generator.keyword_add%</argument>
+        </service>
+
+        <service id="thormeier_slides_generator.renderer.markdown" class="Thormeier\SlidesGeneratorBundle\Renderer\MarkdownRenderer"/>
+
+        <service id="thormeier_slides_generator.generator" class="Thormeier\SlidesGeneratorBundle\Generator\SlidesGenerator"/>
+
+    </services>
+</container>
